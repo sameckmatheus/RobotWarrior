@@ -41,7 +41,7 @@ class Robot:
 
     def print_status(self, robot_art=None, colors=None):
         print(self.color_code)
-        str_robot = robot_art.format(**self.get_part_status())
+        str_robot = robot_art.format(self.get_part_status())
         self.greet()
         self.print_energy()
         print(str_robot)
