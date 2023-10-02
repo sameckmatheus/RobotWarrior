@@ -39,7 +39,7 @@ class Robot:
             Part("Right Leg", attack_level=8, defense_level=20, energy_consumption=15),
         ]
 
-    def print_status(self, robot_art=None, colors=None):
+    def print_status(self):
         print(self.color_code)
         str_robot = robot_art.format(self.get_part_status())
         self.greet()
@@ -54,4 +54,69 @@ class Robot:
         print("We have", self.energy, " percent energy left")
 
     def get_part_status(self):
-        pass
+        part_status = {}
+        for part in self.parts:
+            status_dict = part.get_status_dict()
+            part_status.update(status_dict)
+        return part_status
+
+    def is_there_available_part(self):
+        for part in self.parts:
+            if part.is_available():
+                return True
+        return False
+
+    def is_on(self):
+        return self.energy >= 0
+
+
+robot_art = r"""
+      0: {head_name}
+      Is available: {head_status}
+      Attack: {head_attack}                              
+      Defense: {head_defense}
+      Energy consumption: {head_energy_consump}
+              ^
+              |                  |1: {weapon_name}
+              |                  |Is available: {weapon_status}
+     ____     |    ____          |Attack: {weapon_attack}
+    |oooo|  ____  |oooo| ------> |Defense: {weapon_defense}
+    |oooo| '    ' |oooo|         |Energy consumption: {weapon_energy_consump}
+    |oooo|/\_||_/\|oooo|          
+    `----' / __ \  `----'           |2: {left_arm_name}
+   '/  |#|/\/__\/\|#|  \'           |Is available: {left_arm_status}
+   /  \|#|| |/\| ||#|/  \           |Attack: {left_arm_attack}
+  / \_/|_|| |/\| ||_|\_/ \          |Defense: {left_arm_defense}
+ |_\/    O\=----=/O    \/_|         |Energy consumption: {left_arm_energy_consump}
+ <_>      |=\__/=|      <_> ------> |
+ <_>      |------|      <_>         |3: {right_arm_name}
+ | |   ___|======|___   | |         |Is available: {right_arm_status}
+// \\ / |O|======|O| \  //\\        |Attack: {right_arm_attack}
+|  |  | |O+------+O| |  |  |        |Defense: {right_arm_defense}
+|\/|  \_+/        \+_/  |\/|        |Energy consumption: {right_arm_energy_consump}
+\__/  _|||        |||_  \__/        
+      | ||        || |          |4: {left_leg_name} 
+     [==|]        [|==]         |Is available: {left_leg_status}
+     [===]        [===]         |Attack: {left_leg_attack}
+      >_<          >_<          |Defense: {left_leg_defense}
+     || ||        || ||         |Energy consumption: {left_leg_energy_consump}
+     || ||        || || ------> |
+     || ||        || ||         |5: {right_leg_name}
+   __|\_/|__    __|\_/|__       |Is available: {right_leg_status}
+  /___n_n___\  /___n_n___\      |Attack: {right_leg_attack}
+                                |Defense: {right_leg_defense}
+                                |Energy consumption: {right_leg_energy_consump}
+
+"""
+
+colors = {
+    "Black": '\x1b[90m',
+    "Blue": '\x1b[94m',
+    "Cyan": '\x1b[96m',
+    "Green": '\x1b[92m',
+    "Magenta": '\x1b[95m',
+    "Red": '\x1b[91m',
+    "White": '\x1b[97m',
+    "Yellow": '\x1b[93m',
+}
+
