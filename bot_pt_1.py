@@ -55,4 +55,3 @@ class Robot:
 
     def get_part_status(self):
         pass
-
