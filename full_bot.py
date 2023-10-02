@@ -153,10 +153,10 @@ def play():
 
     current_robot = robot_one
     enemy_robot = robot_two
-    round = 0
+    rounds = 0
 
     while playing:
-        if round % 2 == 0:
+        if rounds % 2 == 0:
             current_robot = robot_one
             enemy_robot = robot_two
         else:
@@ -173,7 +173,7 @@ def play():
         part_to_attack = int(part_to_attack)
 
         current_robot.attack(enemy_robot, part_to_use, part_to_attack)
-        round += 1
+        rounds += 1
         if not enemy_robot.is_on() or enemy_robot.is_there_available_part() == False:
             playing = False
             print("Congratulations, you won")
