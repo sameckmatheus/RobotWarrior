@@ -1,4 +1,4 @@
-class Part():
+class Part:
 
     def __init__(self, name: str, attack_level=0, defense_level=0, energy_consumption=0):
         self.name = name
@@ -69,6 +69,27 @@ class Robot:
     def is_on(self):
         return self.energy >= 0
 
+    def attack(self, enemy_robot, part_to_use, part_to_attack):
+        enemy_robot.parts[part_to_attack].reduce_edefense(self.parts[part_to_use].attack_level)
+        self.energy -= self.parts[part_to_use].energy_consumption
+
+def build_robot():
+    robot_name = input("Robot name: ")
+    color_code = choose_color()
+    robot = Robot(robot_name, color_code)
+    robot.print_status()
+    return robot
+
+def choose_color():
+    available_colors = colors
+    print("Available colors:")
+    for key, value in available_colors.items():
+        print(value, key)
+    print(colors["White"])
+    chosen_color = input("Choose a color: ")
+    color_code = available_colors[chosen_color]
+    return color_code
+
 
 robot_art = r"""
       0: {head_name}
@@ -119,4 +140,3 @@ colors = {
     "White": '\x1b[97m',
     "Yellow": '\x1b[93m',
 }
-
