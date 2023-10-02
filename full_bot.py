@@ -1,3 +1,53 @@
+robot_art = r"""
+      0: {head_name}
+      Is available: {head_status}
+      Attack: {head_attack}                              
+      Defense: {head_defense}
+      Energy consumption: {head_energy_consump}
+              ^
+              |                  |1: {weapon_name}
+              |                  |Is available: {weapon_status}
+     ____     |    ____          |Attack: {weapon_attack}
+    |oooo|  ____  |oooo| ------> |Defense: {weapon_defense}
+    |oooo| '    ' |oooo|         |Energy consumption: {weapon_energy_consump}
+    |oooo|/\_||_/\|oooo|          
+    `----' / __ \  `----'           |2: {left_arm_name}
+   '/  |#|/\/__\/\|#|  \'           |Is available: {left_arm_status}
+   /  \|#|| |/\| ||#|/  \           |Attack: {left_arm_attack}
+  / \_/|_|| |/\| ||_|\_/ \          |Defense: {left_arm_defense}
+ |_\/    O\=----=/O    \/_|         |Energy consumption: {left_arm_energy_consump}
+ <_>      |=\__/=|      <_> ------> |
+ <_>      |------|      <_>         |3: {right_arm_name}
+ | |   ___|======|___   | |         |Is available: {right_arm_status}
+// \\ / |O|======|O| \  //\\        |Attack: {right_arm_attack}
+|  |  | |O+------+O| |  |  |        |Defense: {right_arm_defense}
+|\/|  \_+/        \+_/  |\/|        |Energy consumption: {right_arm_energy_consump}
+\__/  _|||        |||_  \__/        
+      | ||        || |          |4: {left_leg_name} 
+     [==|]        [|==]         |Is available: {left_leg_status}
+     [===]        [===]         |Attack: {left_leg_attack}
+      >_<          >_<          |Defense: {left_leg_defense}
+     || ||        || ||         |Energy consumption: {left_leg_energy_consump}
+     || ||        || || ------> |
+     || ||        || ||         |5: {right_leg_name}
+   __|\_/|__    __|\_/|__       |Is available: {right_leg_status}
+  /___n_n___\  /___n_n___\      |Attack: {right_leg_attack}
+                                |Defense: {right_leg_defense}
+                                |Energy consumption: {right_leg_energy_consump}
+
+"""
+
+colors = {
+    "Black": '\x1b[90m',
+    "Orange": '\x1b[94m',
+    "Cyan": '\x1b[96m',
+    "Green": '\x1b[92m',
+    "Magenta": '\x1b[95m',
+    "Red": '\x1b[91m',
+    "White": '\x1b[97m',
+    "Yellow": '\x1b[93m',
+}
+
 class Part:
 
     def __init__(self, name: str, attack_level=0, defense_level=0, energy_consumption=0):
@@ -103,10 +153,10 @@ def play():
 
     current_robot = robot_one
     enemy_robot = robot_two
-    rount = 0
+    round = 0
 
     while playing:
-        if rount % 2 == 0:
+        if round % 2 == 0:
             current_robot = robot_one
             enemy_robot = robot_two
         else:
@@ -123,60 +173,10 @@ def play():
         part_to_attack = int(part_to_attack)
 
         current_robot.attack(enemy_robot, part_to_use, part_to_attack)
-        rount += 1
+        round += 1
         if not enemy_robot.is_on() or enemy_robot.is_there_available_part() == False:
             playing = False
             print("Congratulations, you won")
 
 
 play()
-
-robot_art = r"""
-      0: {head_name}
-      Is available: {head_status}
-      Attack: {head_attack}                              
-      Defense: {head_defense}
-      Energy consumption: {head_energy_consump}
-              ^
-              |                  |1: {weapon_name}
-              |                  |Is available: {weapon_status}
-     ____     |    ____          |Attack: {weapon_attack}
-    |oooo|  ____  |oooo| ------> |Defense: {weapon_defense}
-    |oooo| '    ' |oooo|         |Energy consumption: {weapon_energy_consump}
-    |oooo|/\_||_/\|oooo|          
-    `----' / __ \  `----'           |2: {left_arm_name}
-   '/  |#|/\/__\/\|#|  \'           |Is available: {left_arm_status}
-   /  \|#|| |/\| ||#|/  \           |Attack: {left_arm_attack}
-  / \_/|_|| |/\| ||_|\_/ \          |Defense: {left_arm_defense}
- |_\/    O\=----=/O    \/_|         |Energy consumption: {left_arm_energy_consump}
- <_>      |=\__/=|      <_> ------> |
- <_>      |------|      <_>         |3: {right_arm_name}
- | |   ___|======|___   | |         |Is available: {right_arm_status}
-// \\ / |O|======|O| \  //\\        |Attack: {right_arm_attack}
-|  |  | |O+------+O| |  |  |        |Defense: {right_arm_defense}
-|\/|  \_+/        \+_/  |\/|        |Energy consumption: {right_arm_energy_consump}
-\__/  _|||        |||_  \__/        
-      | ||        || |          |4: {left_leg_name} 
-     [==|]        [|==]         |Is available: {left_leg_status}
-     [===]        [===]         |Attack: {left_leg_attack}
-      >_<          >_<          |Defense: {left_leg_defense}
-     || ||        || ||         |Energy consumption: {left_leg_energy_consump}
-     || ||        || || ------> |
-     || ||        || ||         |5: {right_leg_name}
-   __|\_/|__    __|\_/|__       |Is available: {right_leg_status}
-  /___n_n___\  /___n_n___\      |Attack: {right_leg_attack}
-                                |Defense: {right_leg_defense}
-                                |Energy consumption: {right_leg_energy_consump}
-
-"""
-
-colors = {
-    "Black": '\x1b[90m',
-    "Blue": '\x1b[94m',
-    "Cyan": '\x1b[96m',
-    "Green": '\x1b[92m',
-    "Magenta": '\x1b[95m',
-    "Red": '\x1b[91m',
-    "White": '\x1b[97m',
-    "Yellow": '\x1b[93m',
-}
