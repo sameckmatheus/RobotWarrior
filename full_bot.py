@@ -129,6 +129,8 @@ def play():
             print("Congratulations, you won")
 
 
+play()
+
 robot_art = r"""
       0: {head_name}
       Is available: {head_status}
