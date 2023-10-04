@@ -90,7 +90,7 @@ def choose_color():
 def build_robot():
     robot_name = input("Robot name: ")
     color_code = choose_color()
-    robot = Robot(robot_name, color_code, robot_name)
+    robot = Robot(robot_name, color_code)
     robot.print_status()
     return robot
 
@@ -132,8 +132,7 @@ def play():
 
 
 class Robot:
-    def __init__(self, name, color_code, robot_name):
-        self.name = name
+    def __init__(self, color_code, robot_name):
         self.color_code = color_code
         self.robot_name = robot_name
         self.energy = 100
@@ -155,7 +154,7 @@ class Robot:
         print(colors["White"])
 
     def greet(self):
-        print("Hello, my name is", self.name)
+        print("Hello, my name is", self.robot_name)
 
     def print_energy(self):
         print("We have", self.energy, " percent energy left")
@@ -180,4 +179,5 @@ class Robot:
         enemy_robot.parts[part_to_attack].reduce_edefense(self.parts[part_to_use].attack_level)
         self.energy -= self.parts[part_to_use].energy_consumption
 
-    play()
+
+play()
