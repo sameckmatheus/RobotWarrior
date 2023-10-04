@@ -90,7 +90,7 @@ def choose_color():
 def build_robot():
     robot_name = input("Robot name: ")
     color_code = choose_color()
-    robot = Robot(robot_name, color_code)
+    robot = Robot(robot_name, color_code, robot_name)
     robot.print_status()
     return robot
 
@@ -129,15 +129,16 @@ def play():
 
         current_robot.attack(enemy_robot, part_to_use, part_to_attack)
         rounds += 1
-        if not enemy_robot.is_on() or enemy_robot.is_there_available_part():
+        if not enemy_robot.is_on() or enemy_robot.is_there_available_part(enemy_robot, part_to_attack):
             playing = False
             print("Congratulations, you won")
 
 
 class Robot:
-    def __init__(self, name, color_code):
+    def __init__(self, name, color_code, robot_name):
         self.name = name
         self.color_code = color_code
+        self.robot_name = robot_name
         self.energy = 100
         self.parts = [
             Part("Head", attack_level=5, defense_level=10, energy_consumption=5),
@@ -169,9 +170,9 @@ class Robot:
             part_status.update(status_dict)
         return part_status
 
-    def is_there_available_part(self):
+    def is_there_available_part(self, enemy_robot, part_to_attack):
         for part in self.parts:
-            if part.is_available():
+            if enemy_robot.parts[part_to_attack].is_available():
                 return True
         return False
 
