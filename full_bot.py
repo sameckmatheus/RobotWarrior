@@ -97,7 +97,6 @@ def build_robot():
 
 def play():
     """
-
     :rtype: object
     """
     playing = True
@@ -177,7 +176,7 @@ class Robot:
         return False
 
     def is_on(self):
-        return self.energy >= 0
+        return self.energy > 0
 
     def attack(self, enemy_robot, part_to_use, part_to_attack):
         enemy_robot.parts[part_to_attack].reduce_edefense(self.parts[part_to_use].attack_level)
