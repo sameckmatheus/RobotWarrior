@@ -96,9 +96,6 @@ def build_robot():
 
 
 def play():
-    """
-    :rtype: object
-    """
     playing = True
     print("Welcome to the game!")
     print("Datas for player 1:")
@@ -171,7 +168,7 @@ class Robot:
         return part_status
 
     def is_there_available_part(self, enemy_robot, part_to_attack):
-        for part in self.parts:
+        for _ in self.parts:
             if enemy_robot.parts[part_to_attack].is_available():
                 return True
         return False
