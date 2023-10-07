@@ -113,7 +113,8 @@ def play():
 
         try:
             part_to_use = int(input("What part should I use to attack? Choose a number part: "))
-            part_to_attack = int(input("Which part of the enemy should we attack? Choose an enemy number part to attack: "))
+            part_to_attack = int(input("Which part of the enemy should we attack? Choose an enemy number part to "
+                                       "attack: "))
         except ValueError:
             print("Invalid input.")
             continue
@@ -123,7 +124,7 @@ def play():
 
         if not enemy_robot.is_on() or not enemy_robot.is_there_available_part():
             playing = False
-            print("Congratulations, you won")
+            print(f"Congratulations, you win!!!")
 
 
 # Robot art and colors
