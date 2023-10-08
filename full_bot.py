@@ -85,8 +85,12 @@ def choose_color():
     for key, value in available_colors.items():
         print(value, key)
     print(colors["white"])
-    chosen_color = input("Choose a color: ").lower()
-    return available_colors.get(chosen_color, colors["white"])
+    while True:
+        chosen_color = input("Choose a color: ").lower()
+        if chosen_color in available_colors:
+            return available_colors[chosen_color]
+        else:
+            print("Invalid color choice. Please choose a valid color.")
 
 
 def play():
@@ -113,17 +117,22 @@ def play():
 
         try:
             part_to_use = int(input("What part should I use to attack? Choose a number part: "))
-            part_to_attack = int(input("Which part of the enemy should we attack? Choose an enemy number part to attack: "))
+            part_to_attack = int(input("Which part of the enemy should we attack? Choose an enemy number part to "
+                                       "attack: "))
         except ValueError:
-            print("Invalid input.")
+            print("Invalid input. Please enter a number.")
             continue
 
-        current_robot.attack(enemy_robot, part_to_use, part_to_attack)
-        round_count += 1
+        if 0 <= part_to_use <= 5 and 0 <= part_to_attack <= 5:
+            current_robot.attack(enemy_robot, part_to_use - 1, part_to_attack - 1)
+            round_count += 1
 
-        if not enemy_robot.is_on() or not enemy_robot.is_there_available_part():
-            playing = False
-            print("Congratulations, you won")
+            if not enemy_robot.is_on() or not enemy_robot.is_there_available_part():
+                playing = False
+                print()
+                print(f"Congratulations, {current_robot.name.upper()} wins!!!")
+        else:
+            print("Invalid part number. Please choose a number between 0 and 5.")
 
 
 # Robot art and colors
@@ -138,8 +147,8 @@ robot_art = r"""
               |                  |Is available: {weapon_status}
      ____     |    ____          |Attack: {weapon_attack}
     |oooo|  ____  |oooo| ------> |Defense: {weapon_defense}
-    |oooo| '    ' |oooo|         |Energy consumption: {weapon_energy_consump}
-    |oooo|/\_||_/\|oooo|
+    |oooo| +    + |oooo|         |Energy consumption: {weapon_energy_consump}
+    |oooo|/\+||+/\|oooo|
     `----' / __ \  `----'           |2: {left_arm_name}
    '/  |#|/\/__\/\|#|  \'           |Is available: {left_arm_status}
    /  \|#|| |/\| ||#|/  \           |Attack: {left_arm_attack}
@@ -148,7 +157,7 @@ robot_art = r"""
  <_>      |=\__/=|      <_> ------> |
  <_>      |------|      <_>         |3: {right_arm_name}
  | |   ___|======|___   | |         |Is available: {right_arm_status}
-// \\ / |O|======|O| \  //\\        |Attack: {right_arm_attack}
+//\\  / |O|======|O| \  //\\        |Attack: {right_arm_attack}
 |  |  | |O+------+O| |  |  |        |Defense: {right_arm_defense}
 |\/|  \_+/        \+_/  |\/|        |Energy consumption: {right_arm_energy_consump}
 \__/  _|||        |||_  \__/
@@ -178,4 +187,3 @@ colors = {
 
 if __name__ == "__main__":
     play()
-  
