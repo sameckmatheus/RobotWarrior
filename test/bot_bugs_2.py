@@ -71,12 +71,33 @@ class Robot:
         self.energy -= self.parts[part_to_use].energy_consumption
 
 
+# Dicionário de robôs disponíveis
+available_robots = {
+    1: {"name": "Robot One", "color": "green", "art": robot_art},
+    2: {"name": "Robot Two", "color": "blue", "art": robot_two_art},
+    # Adicione mais robôs conforme necessário
+}
+
 def build_robot():
-    robot_name = input("Robot name: ")
-    color_code = choose_color()
-    robot = Robot(robot_name, color_code)
-    robot.print_status()
-    return robot
+    print("Available Robots:")
+    for robot_id, robot_info in available_robots.items():
+        print(f"{robot_id}: {robot_info['name']} (Color: {robot_info['color']})")
+
+    while True:
+        try:
+            robot_choice = int(input("Choose a robot (1, 2, etc.): "))
+            selected_robot = available_robots.get(robot_choice)
+            if selected_robot:
+                robot_name = selected_robot["name"]
+                color_code = colors[selected_robot["color"]]
+                robot_art = selected_robot["art"]
+                robot = Robot(robot_name, color_code, robot_art)
+                robot.print_status()
+                return robot
+            else:
+                print("Invalid robot choice. Please choose a valid option.")
+        except ValueError:
+            print("Invalid input. Please enter a number.")
 
 
 def choose_color():
@@ -173,6 +194,35 @@ robot_art = r"""
                                 |Defense: {right_leg_defense}
                                 |Energy consumption: {right_leg_energy_consump}
 """
+
+robot_two_art = r"""
+      ___
+     |_|_|
+     |_|_|
+     |_|_|              _____
+     |_|_|     ____    |*_*_*|
+ _______   _\__\___/ __ \____|_|_   _______
+/ ____  |=|      \  <_+>  /      |=|  ____ \ 
+~|    |\|=|======\\______//======|=|/|    |~   /
+ |_   |    \      |      |      /    |    |   //
+  \==-|     \     |  sm  |     /     |----|~~///
+  |   |      |    |      |    |      |____/~////
+  |   |       \____\____/____/      /    / ///
+  |   |         {----------}       /____/ //
+  |___|        /~~~~~~~~~~~~\     |_/~|_|/
+   \_/        |/~~~~~||~~~~~\|     /__|\
+   | |         |    ||||    |     (/|| \)
+   | |        /     |  |     \       \\
+   |_|        |     |  |     |
+              |_____|  |_____|
+              (_____)  (_____)
+              |     |  |     |
+              |     |  |     |
+              |/~~~\|  |/~~~\|
+              /|___|\  /|___|\
+             <_______><_______>
+"""
+
 
 colors = {
     "black": '\x1b[90m',

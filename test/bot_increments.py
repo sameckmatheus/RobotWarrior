@@ -208,37 +208,37 @@ robot_art = r"""
     /______\  /______\
    |________||________|
 
-   
-
-
-
-
-   
-           ___
-          |_|_|
-          |_|_|              _____
-          |_|_|     ____    |*_*_*|
- _______   _\__\___/ __ \____|_|_   _______
-/ ____  |=|      \  <_+>  /      |=|  ____ \ 
-~|    |\|=|======\\______//======|=|/|    |~   /
- |_   |    \      |      |      /    |    |   //
-  \==-|     \     |  sm  |     /     |----|~~///
-  |   |      |    |      |    |      |____/~////
-  |   |       \____\____/____/      /    / ///
-  |   |         {----------}       /____/ //
-  |___|        /~~~~~~~~~~~~\     |_/~|_|/
-   \_/        |/~~~~~||~~~~~\|     /__|\
-   | |         |    ||||    |     (/|| \)
-   | |        /     |  |     \       \\
-   |_|        |     |  |     |
-              |_____|  |_____|
-              (_____)  (_____)
-              |     |  |     |
-              |     |  |     |
-              |/~~~\|  |/~~~\|
-              /|___|\  /|___|\
-             <_______><_______>
+ 
 """
+
+# Dicionários para os três robôs
+robot_art_1_status = {
+    "head_name": "Head 1",
+    "head_status": "Available",
+    "head_attack": 5,
+    "head_defense": 10,
+    "head_energy_consump": 5,
+    # Adicione informações para outras partes do robô aqui
+}
+
+robot_art_2_status = {
+    "head_name": "Head 2",
+    "head_status": "Available",
+    "head_attack": 6,
+    "head_defense": 12,
+    "head_energy_consump": 6,
+    # Adicione informações para outras partes do robô aqui
+}
+
+robot_art_3_status = {
+    "head_name": "Head 3",
+    "head_status": "Available",
+    "head_attack": 7,
+    "head_defense": 14,
+    "head_energy_consump": 7,
+    # Adicione informações para outras partes do robô aqui
+}
+
 
 colors = {
     "black": '\x1b[90m',
