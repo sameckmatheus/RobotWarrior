@@ -196,31 +196,40 @@ robot_art = r"""
 """
 
 robot_two_art = r"""
-      ___
-     |_|_|
-     |_|_|
-     |_|_|              _____
-     |_|_|     ____    |*_*_*|
- _______   _\__\___/ __ \____|_|_   _______
-/ ____  |=|      \  <_+>  /      |=|  ____ \ 
-~|    |\|=|======\\______//======|=|/|    |~   /
- |_   |    \      |      |      /    |    |   //
+    0: {head_name}
+    Is available: {head_status}
+    Attack: {head_attack}
+    Defense: {head_defense}
+    Energy consumption: {head_energy_consump}
+                    ^
+                    |
+      ___           |
+     |_|_|          |
+     |_|_|          |                                |1: {weapon_name}
+     |_|_|              _____                        |Is available: {weapon_status}
+     |_|_|     ____    |*_*_*|   ------------------> |Attack: {weapon_attack}
+ _______   _\__\___/ __ \____|_|_   _______          |Defense: {weapon_defense}
+/ ____  |=|      \  <_+>  /      |=|  ____ \         |Energy consumption: {weapon_energy_consump}
+~|    |\|=|======\\______//======|=|/|    |~   /     
+ |_   |    \      |      |      /    |    |   //     
   \==-|     \     |  sm  |     /     |----|~~///
-  |   |      |    |      |    |      |____/~////
-  |   |       \____\____/____/      /    / ///
-  |   |         {----------}       /____/ //
-  |___|        /~~~~~~~~~~~~\     |_/~|_|/
-   \_/        |/~~~~~||~~~~~\|     /__|\
-   | |         |    ||||    |     (/|| \)
-   | |        /     |  |     \       \\
-   |_|        |     |  |     |
-              |_____|  |_____|
-              (_____)  (_____)
-              |     |  |     |
+  |   |      |    |      |    |      |____/~////   |2: {left_arm_name}
+  |   |       \____\____/____/      /    / ///     |Is available: {left_arm_status}
+  |   |         {----------}       /____/ //       |Attack: {left_arm_attack}
+  |___|        /~~~~~~~~~~~~\     |_/~|_|/         |Defense: {left_arm_defense}
+   \_/        |/~~~~~||~~~~~\|     /__|\           |Energy consumption: {left_arm_energy_consump}
+   | |         |    ||||    |     (/|| \) -------> |
+   | |        /     |  |     \       \\            |3: {right_arm_name}
+   |_|        |     |  |     |                     |Is available: {right_arm_status}
+              |_____|  |_____|                     |Attack: {right_arm_attack}
+              (_____)  (_____)                     |Defense: {right_arm_defense}
+              |     |  |     |                     |Energy consumption: {right_arm_energy_consump}
               |     |  |     |
               |/~~~\|  |/~~~\|
               /|___|\  /|___|\
              <_______><_______>
+                     |
+                     |-------------->
 """
 
 

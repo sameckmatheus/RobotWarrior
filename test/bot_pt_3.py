@@ -8,7 +8,7 @@ def get_part_status(self):
 
 def is_there_available_part(self):
     for part in self.parts:
-        if part.is_available():
+        if part.is_available:
             return True
     return False
 

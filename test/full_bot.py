@@ -9,7 +9,7 @@ class Part:
         formatted_name = self.name.replace(" ", "_").lower()
         return {
             "{}_name".format(formatted_name): self.name.upper(),
-            "{}_status".format(formatted_name): self.is_available(),
+            "{}_status".format(formatted_name): self.is_available,
             "{}_attack".format(formatted_name): self.attack_level,
             "{}_defense".format(formatted_name): self.defense_level,
             "{}_energy_consump".format(formatted_name): self.energy_consumption,
@@ -18,8 +18,12 @@ class Part:
     def reduce_defense(self, attack_level):
         self.defense_level = max(0, self.defense_level - attack_level)
 
+        if self.defense_level <= 0:
+            print(f'{self.name} is destroyed!')
+
+    @property
     def is_available(self):
-        return self.defense_level <= 0
+        return self.defense_level > 0
 
 
 class Robot:
@@ -59,7 +63,7 @@ class Robot:
 
     def is_there_available_part(self):
         for part in self.parts:
-            if part.is_available():
+            if part.is_available:
                 return True
         return False
 
